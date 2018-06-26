@@ -8,6 +8,34 @@
     <link rel="stylesheet" href="TemplateData/style.css">
     <script src="TemplateData/UnityProgress.js"></script>  
     <script src="Build/UnityLoader.js"></script>
+    <script type="text/javascript">
+        window.addEventListener("resize", resizeCanvas, false);
+    
+        function unityLoaded(){
+            resizeCanvas();
+        }
+    
+        function resizeCanvas () {
+            var gameDiv = document.getElementById("game");
+            var canvas = document.getElementById("canvas");
+    
+            var windowWidth = window.innerWidth;
+            var windowHeight = window.innerHeight;
+    
+            var pointWidth = Math.round(windowWidth);
+            var pointHeight = Math.round(pointWidth / 1.6);
+    
+            if(pointHeight > windowHeight){
+            pointHeight = windowHeight;
+            pointWidth = pointHeight * 1.6;
+            }
+    
+            gameDiv.setAttribute("style","width: "+pointWidth+"px;height:"+pointHeight+"px;");
+    
+            canvas.height = pointHeight;
+            canvas.width = pointWidth;
+        }
+        </script>
     <script>
       var gameInstance = UnityLoader.instantiate("gameContainer", "Build/1HGJ.json", {onProgress: UnityProgress});
     </script>
